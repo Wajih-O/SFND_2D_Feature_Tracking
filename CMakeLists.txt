@@ -10,6 +10,7 @@ project(camera_fusion)
 find_package(OpenCV 4.1 REQUIRED)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
+message(" opencv include dirs ->  ${OpenCV_INCLUDE_DIRS}")
 link_directories(${OpenCV_LIBRARY_DIRS})
 add_definitions(${OpenCV_DEFINITIONS})
 
