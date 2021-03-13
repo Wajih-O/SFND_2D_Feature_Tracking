@@ -107,7 +107,7 @@ int main(int argc, const char *argv[])
     {"BRISK", "BRIEF"}, {"BRISK", "ORB"}, {"BRISK", "FREAK"}, {"BRISK", "SIFT"},
     {"ORB", "BRIEF"}, {"ORB", "ORB"}, {"ORB", "FREAK"}, {"ORB", "SIFT"},
     {"AKAZE", "BRIEF"}, {"AKAZE", "ORB"}, {"AKAZE", "FREAK"}, {"AKAZE", "SIFT"},
-    {"SIFT", "SIFT"}, {"SIFT", "BRIEF"}, {"SIFT", "FREAK"}, // {"SIFT", "ORB"},
+    {"SIFT", "SIFT"}, {"SIFT", "BRIEF"}, {"SIFT", "FREAK"}, // {"SIFT", "ORB"}, has a memory problem to debug
     {"AKAZE", "AKAZE"}
     };
 
@@ -118,12 +118,6 @@ int main(int argc, const char *argv[])
     std::cout << std::endl <<"- Detector/descriptor comb.:" << detectorType  <<  ", " << descriptorType << std::endl;
     std::cout << std::endl;
 
-    // todo: put back "SIFT" (activating )
-    // Before re-activating SIFT
-    // terminate called after throwing an instance of 'cv::Exception'
-    // what():  OpenCV(4.1.0) /home/wo/tmp1/opencv_contrib-4.1.0/modules/xfeatures2d/src/sift.cpp:1207:
-    // error: (-213:The function/feature is not implemented) This algorithm is patented and is excluded in this configuration;
-    // Set OPENCV_ENABLE_NONFREE CMake option and rebuild the library in function 'create'
 
     // misc
     int dataBufferSize = 2;       // no. of images which are held in memory (ring buffer) at the same time
@@ -220,7 +214,7 @@ int main(int argc, const char *argv[])
                     iter = keypoints.erase(iter);
                 }
             }
-        std::cout << "- Focus on vehicule: keypoints filtered " << noFocusKeypointNbr << " -> "<< keypoints.size() << std::endl;
+        std::cout << "- Focus on vehicle: keypoints filtered " << noFocusKeypointNbr << " -> "<< keypoints.size() << std::endl;
         }
         // EOF TASK MP.3
 
