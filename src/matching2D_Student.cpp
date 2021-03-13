@@ -142,8 +142,8 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     // perform feature description
     double t = (double)cv::getTickCount();
     extractor->compute(img, keypoints, descriptors);
-    description_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    log << descriptorType << " descriptor extraction in " << 1000 * description_time / 1.0 << " ms" << endl;
+    description_time = 1000 * ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << descriptorType << " descriptor extraction in " << description_time << " ms" << endl;
 }
 
 
@@ -173,8 +173,8 @@ void detKeypointsShiTomasi(vector<cv::KeyPoint> &keypoints, cv::Mat &img, double
         newKeyPoint.size = blockSize;
         keypoints.push_back(newKeyPoint);
     }
-    extraction_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    log << "Shi-Tomasi detection with n=" << keypoints.size() << " keypoints in " << 1000 * extraction_time / 1.0 << " ms" << endl;
+    extraction_time = 1000 * ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << "Shi-Tomasi detection with n=" << keypoints.size() << " keypoints in " << extraction_time << " ms" << endl;
 
     // visualize results
     if (bVis)
@@ -231,8 +231,8 @@ void detKeypointsFAST(vector<cv::KeyPoint> &keypoints, cv::Mat &img, double &ext
     auto detector = cv::FastFeatureDetector::create(threshold);
     double t = (double)cv::getTickCount();
     detector->detect(img, keypoints);
-    extraction_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    log << "FAST detection with n=" << keypoints.size() << " keypoints in " << 1000 * extraction_time / 1.0 << " ms" << endl;
+    extraction_time =  1000 * ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << "FAST detection with n=" << keypoints.size() << " keypoints in " << extraction_time << " ms" << endl;
 
 
     // visualize results
@@ -253,8 +253,8 @@ void detKeypointsBRISK(vector<cv::KeyPoint> &keypoints, cv::Mat &img, double &ex
     auto detector = cv::BRISK::create(threshold, octaves, patternScale);
     double t = (double)cv::getTickCount();
     detector->detect(img, keypoints);
-    extraction_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    log << "BRISK detection with n=" << keypoints.size() << " keypoints in " << 1000 * extraction_time / 1.0 << " ms" << endl;
+    extraction_time = 1000 * ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << "BRISK detection with n=" << keypoints.size() << " keypoints in " << extraction_time << " ms" << endl;
 
     // visualize results
     if (bVis)
@@ -282,8 +282,9 @@ void detKeypointsORB(vector<cv::KeyPoint> &keypoints, cv::Mat &img, double &extr
     auto detector = cv::ORB::create(nfeatures, scaleFactor, nlevels, edgeThreshold, firstLevel, WTA_K, scoreType, patchSize, fastThreshold);
     double t = (double)cv::getTickCount();
     detector->detect(img, keypoints);
-    extraction_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    std::cout << keypoints.size() << " key points extracted!" << std::endl;
+    extraction_time = 1000 *  ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << "ORB detection with n=" << keypoints.size() << " keypoints in " << extraction_time  << " ms" << endl;
+
 
     // visualize results
     if (bVis)
@@ -308,8 +309,8 @@ void detKeypointsAKAZE(vector<cv::KeyPoint> &keypoints, cv::Mat &img, double &ex
     auto detector = cv::AKAZE::create(descriptor_type, descriptor_size, descriptor_channels, threshold, nOctaves, nOctaveLayers, diffusivity);
     double t = (double)cv::getTickCount();
     detector->detect(img, keypoints);
-    extraction_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    log << "AKAZE detection with n=" << keypoints.size() << " keypoints in " << 1000 * extraction_time / 1.0 << " ms" << endl;
+    extraction_time = 1000 * ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << "AKAZE detection with n=" << keypoints.size() << " keypoints in " << extraction_time  << " ms" << endl;
 
     // visualize results
     if (bVis)
@@ -327,8 +328,8 @@ void detKeypointsSIFT(vector<cv::KeyPoint> &keypoints, cv::Mat &img, double &ext
     auto detector = cv::xfeatures2d::SiftFeatureDetector::create();
     double t = (double)cv::getTickCount();
     detector->detect(img, keypoints);
-    extraction_time = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    log << "SIFT detection with n=" << keypoints.size() << " keypoints in " << 1000 * extraction_time / 1.0 << " ms" << endl;
+    extraction_time = 1000 * ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    log << "SIFT detection with n=" << keypoints.size() << " keypoints in " << extraction_time << " ms" << endl;
 
 
     // visualize results
